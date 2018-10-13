@@ -13,14 +13,13 @@ class ScratchPadViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
-        
-        
-//        [label setFont:[NSFont fontWithName:@"Arial-BoldItalicMT" size:20]];
-        
         textView.font = NSFont(name: "helvetica", size: 17)
     }
     
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        textView.window?.makeFirstResponder(textView)
+    }
 }
 
 extension ScratchPadViewController {
