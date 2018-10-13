@@ -689,25 +689,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="230"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="QXW-ZF-R3S">
-                                <rect key="frame" x="15" y="15" width="450" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="ugX-rb-YIz"/>
-                                </constraints>
-                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="bcB-yt-eDM">
-                                    <font key="font" metaFont="system" size="17"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uG1-W1-NC6">
+                                <rect key="frame" x="10" y="10" width="460" height="210"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="THb-wV-8KO">
+                                    <rect key="frame" x="0.0" y="0.0" width="460" height="210"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="NHI-uC-oop">
+                                            <rect key="frame" x="0.0" y="0.0" width="460" height="210"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <size key="minSize" width="460" height="210"/>
+                                            <size key="maxSize" width="481" height="10000000"/>
+                                            <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        </textView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="b3p-Vz-MKf">
+                                    <rect key="frame" x="444" y="0.0" width="16" height="210"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="QXW-ZF-R3S" secondAttribute="trailing" constant="15" id="B16-Az-8mP"/>
-                            <constraint firstAttribute="bottom" secondItem="QXW-ZF-R3S" secondAttribute="bottom" constant="15" id="DzC-Gk-Zib"/>
-                            <constraint firstItem="QXW-ZF-R3S" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="15" id="MKS-Jg-gXu"/>
-                            <constraint firstItem="QXW-ZF-R3S" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="15" id="NEO-WB-XJm"/>
+                            <constraint firstAttribute="trailing" secondItem="uG1-W1-NC6" secondAttribute="trailing" constant="10" id="07S-EZ-noR"/>
+                            <constraint firstAttribute="bottom" secondItem="uG1-W1-NC6" secondAttribute="bottom" constant="10" id="axD-pF-6Pe"/>
+                            <constraint firstItem="uG1-W1-NC6" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="10" id="kHt-DC-hIO"/>
+                            <constraint firstItem="uG1-W1-NC6" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="10" id="ptd-UH-AT5"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="NHI-uC-oop" id="kLw-ti-SpB"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -9,10 +9,16 @@
 import Cocoa
 
 class ScratchPadViewController: NSViewController {
-
+    @IBOutlet var textView: NSTextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        
+        
+//        [label setFont:[NSFont fontWithName:@"Arial-BoldItalicMT" size:20]];
+        
+        textView.font = NSFont(name: "helvetica", size: 17)
     }
     
 }
