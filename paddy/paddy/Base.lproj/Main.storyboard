@@ -686,32 +686,35 @@
             <objects>
                 <viewController storyboardIdentifier="ScratchPadViewController" id="XfG-lQ-9wD" customClass="ScratchPadViewController" customModule="paddy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="230"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="315"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uG1-W1-NC6">
-                                <rect key="frame" x="15" y="15" width="450" height="200"/>
+                                <rect key="frame" x="15" y="15" width="450" height="285"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="THb-wV-8KO">
-                                    <rect key="frame" x="0.0" y="0.0" width="450" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="285"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="NHI-uC-oop">
-                                            <rect key="frame" x="0.0" y="0.0" width="450" height="200"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="450" height="285"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <size key="minSize" width="450" height="200"/>
+                                            <size key="minSize" width="450" height="285"/>
                                             <size key="maxSize" width="481" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
                                     </subviews>
                                 </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="285" id="aaW-E7-GFR"/>
+                                </constraints>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="b3p-Vz-MKf">
-                                    <rect key="frame" x="434" y="0.0" width="16" height="200"/>
+                                    <rect key="frame" x="434" y="0.0" width="16" height="285"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kua-dF-pb2">
-                                <rect key="frame" x="466" y="216" width="13" height="13"/>
+                                <rect key="frame" x="466" y="301" width="13" height="13"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="13" id="UzE-dx-aOp"/>
                                     <constraint firstAttribute="width" secondItem="kua-dF-pb2" secondAttribute="height" multiplier="1:1" id="hv3-YC-GqN"/>
@@ -740,7 +743,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="75" y="697.5"/>
         </scene>
     </scenes>
     <resources>

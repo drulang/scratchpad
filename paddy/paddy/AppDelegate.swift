@@ -16,6 +16,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let popover = NSPopover()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+
+        contextMenu.addItem(NSMenuItem(title: "Small",
+                                       action: #selector(NSApplication.terminate(_:)), keyEquivalent: "s"))
+        contextMenu.addItem(NSMenuItem(title: "Medium",
+                                       action: #selector(NSApplication.terminate(_:)), keyEquivalent: "m"))
+        contextMenu.addItem(NSMenuItem(title: "Large",
+                                       action: #selector(NSApplication.terminate(_:)), keyEquivalent: "l"))
+        contextMenu.addItem(NSMenuItem.separator())
+        contextMenu.addItem(NSMenuItem(title: "Feedback",
+                                       action: #selector(NSApplication.terminate(_:)), keyEquivalent: "l"))
         contextMenu.addItem(NSMenuItem.separator())
         contextMenu.addItem(NSMenuItem(title: "Quit Quotes", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
 
