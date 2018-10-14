@@ -17,6 +17,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let scratchPadViewController = ScratchPadViewController.freshController()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+//        contextMenu.addItem(NSMenuItem(title: "Window",
+//                                       action: nil, keyEquivalent: ""))
+//        contextMenu.addItem(NSMenuItem(title: "Small",
+//                                       action: #selector(smallFont), keyEquivalent: "s"))
+//        contextMenu.addItem(NSMenuItem(title: "Medium",
+//                                       action: #selector(medFont), keyEquivalent: "m"))
+//        contextMenu.addItem(NSMenuItem(title: "Large",
+//                                       action: #selector(largeFont), keyEquivalent: "l"))
+//        contextMenu.addItem(NSMenuItem.separator())
+        contextMenu.addItem(NSMenuItem(title: "Font",
+                                       action: nil, keyEquivalent: ""))
         contextMenu.addItem(NSMenuItem(title: "Small",
                                        action: #selector(smallFont), keyEquivalent: "s"))
         contextMenu.addItem(NSMenuItem(title: "Medium",
