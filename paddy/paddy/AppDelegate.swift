@@ -25,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                        action: #selector(largeFont), keyEquivalent: "l"))
         contextMenu.addItem(NSMenuItem.separator())
         contextMenu.addItem(NSMenuItem(title: "Feedback",
-                                       action: #selector(NSApplication.terminate(_:)), keyEquivalent: "l"))
+                                       action: #selector(NSApplication.terminate(_:)), keyEquivalent: ""))
         contextMenu.addItem(NSMenuItem.separator())
         contextMenu.addItem(NSMenuItem(title: "Quit Quotes", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
 
