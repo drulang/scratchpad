@@ -24,7 +24,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.action = #selector(togglePopover(_:))
              button.sendAction(on: [.leftMouseUp, .rightMouseUp])
         }
-        popover.contentViewController = ScratchPadViewController.freshController()
+
+        let vc = ScratchPadViewController.freshController()
+        vc.delegate = self
+        popover.contentViewController = vc
         
         eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
             if let strongSelf = self, strongSelf.popover.isShown {
@@ -65,6 +68,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 extension AppDelegate: ScratchPadViewControllerDelegate {
     func settingsButtonTapped() {
-
+        statusItem.menu = contextMenu
+        statusItem.popUpMenu(contextMenu)
+        statusItem.menu = nil
     }
 }
