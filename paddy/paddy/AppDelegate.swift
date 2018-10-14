@@ -10,15 +10,19 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    let contextMenu = NSMenu()
     var eventMonitor: EventMonitor?
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
     let popover = NSPopover()
 
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        contextMenu.addItem(NSMenuItem.separator())
+        contextMenu.addItem(NSMenuItem(title: "Quit Quotes", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+
         if let button = statusItem.button {
             button.image = NSImage(named:NSImage.Name("StatusBarButtonImage"))
             button.action = #selector(togglePopover(_:))
+             button.sendAction(on: [.leftMouseUp, .rightMouseUp])
         }
         popover.contentViewController = ScratchPadViewController.freshController()
         
@@ -29,11 +33,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-    }
-
     @objc func togglePopover(_ sender: Any?) {
+        let event = NSApp.currentEvent!
+
+        if event.type == NSEvent.EventType.rightMouseUp  {
+            closePopover(sender: sender)
+            statusItem.menu = contextMenu
+            statusItem.popUpMenu(contextMenu)
+
+            // This is critical, otherwise clicks won't be processed again
+            statusItem.menu = nil
+
+            return
+        }
+
         if popover.isShown {
             closePopover(sender: sender)
         } else {
