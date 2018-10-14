@@ -37,7 +37,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let event = NSApp.currentEvent!
 
         if event.type == NSEvent.EventType.rightMouseUp  {
-            closePopover(sender: sender)
             statusItem.menu = contextMenu
             statusItem.popUpMenu(contextMenu)
 
