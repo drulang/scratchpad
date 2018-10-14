@@ -14,6 +14,16 @@ class ScratchPadViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.font = NSFont(name: "helvetica", size: 17)
+
+        textView.string = UserDefaults.standard.value(forKey: "padData") as? String ?? ""
+
+        NotificationCenter.default.addObserver(forName: NSApplication.willTerminateNotification,
+                                               object: nil, queue: nil) { [weak self] (_) in
+                                                print("terminate")
+                                                guard let self = self else { return }
+                                                UserDefaults.standard.set(self.textView.textStorage?.string, forKey: "padData")
+                                                UserDefaults.standard.synchronize()
+        }
     }
     
     override func viewDidAppear() {
