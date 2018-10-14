@@ -14,15 +14,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var eventMonitor: EventMonitor?
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
     let popover = NSPopover()
+    let scratchPadViewController = ScratchPadViewController.freshController()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-
         contextMenu.addItem(NSMenuItem(title: "Small",
-                                       action: #selector(NSApplication.terminate(_:)), keyEquivalent: "s"))
+                                       action: #selector(smallFont), keyEquivalent: "s"))
         contextMenu.addItem(NSMenuItem(title: "Medium",
-                                       action: #selector(NSApplication.terminate(_:)), keyEquivalent: "m"))
+                                       action: #selector(medFont), keyEquivalent: "m"))
         contextMenu.addItem(NSMenuItem(title: "Large",
-                                       action: #selector(NSApplication.terminate(_:)), keyEquivalent: "l"))
+                                       action: #selector(largeFont), keyEquivalent: "l"))
         contextMenu.addItem(NSMenuItem.separator())
         contextMenu.addItem(NSMenuItem(title: "Feedback",
                                        action: #selector(NSApplication.terminate(_:)), keyEquivalent: "l"))
@@ -35,9 +35,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
              button.sendAction(on: [.leftMouseUp, .rightMouseUp])
         }
 
-        let vc = ScratchPadViewController.freshController()
-        vc.delegate = self
-        popover.contentViewController = vc
+        scratchPadViewController.delegate = self
+        popover.contentViewController = scratchPadViewController
         
         eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
             if let strongSelf = self, strongSelf.popover.isShown {
@@ -73,6 +72,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func closePopover(sender: Any?) {
         popover.performClose(sender)
         eventMonitor?.stop()
+    }
+
+    @objc func smallFont() {
+        scratchPadViewController.setFont(size: .small)
+    }
+
+    @objc func medFont() {
+        scratchPadViewController.setFont(size: .medium)
+    }
+
+    @objc func largeFont() {
+        scratchPadViewController.setFont(size: .large)
     }
 }
 

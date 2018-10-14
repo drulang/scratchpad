@@ -9,23 +9,35 @@
 import Cocoa
 
 protocol ScratchPadViewControllerDelegate: class {
-    func settingsButtonTapped() 
+    func settingsButtonTapped()
 }
 
 class ScratchPadViewController: NSViewController {
+    enum FontSize: Int {
+        case small = 15
+        case medium = 18
+        case large = 21
+    }
+
     @IBOutlet private var textView: NSTextView!
 
     weak var delegate: ScratchPadViewControllerDelegate?
 
-    @IBAction func settingsButtonTapped(_ sender: Any) {
+    @IBAction private func settingsButtonTapped(_ sender: Any) {
         delegate?.settingsButtonTapped()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.font = NSFont(name: "helvetica", size: 17)
-
         textView.string = UserDefaults.standard.value(forKey: "padData") as? String ?? ""
+
+        if let fontSizeRaw = UserDefaults.standard.value(forKey: "padFontSize") as? Int,
+            let fontSize = FontSize(rawValue: fontSizeRaw) {
+            setFont(size: fontSize)
+        } else {
+            setFont(size: .medium)
+        }
 
         NotificationCenter.default.addObserver(forName: NSApplication.willTerminateNotification,
                                                object: nil, queue: nil) { [weak self] (_) in
@@ -39,6 +51,16 @@ class ScratchPadViewController: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         textView.window?.makeFirstResponder(textView)
+    }
+
+    func setFont(size: FontSize) {
+        textView.font = NSFont(name: "helvetica", size: CGFloat(size.rawValue))
+        saveFontSize(size)
+    }
+
+    private func saveFontSize(_ size: FontSize) {
+        UserDefaults.standard.set(size.rawValue, forKey: "padFontSize")
+        UserDefaults.standard.synchronize()
     }
 }
 
