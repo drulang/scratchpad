@@ -39,10 +39,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if event.type == NSEvent.EventType.rightMouseUp  {
             statusItem.menu = contextMenu
             statusItem.popUpMenu(contextMenu)
-
-            // This is critical, otherwise clicks won't be processed again
             statusItem.menu = nil
-
             return
         }
 
@@ -64,7 +61,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         popover.performClose(sender)
         eventMonitor?.stop()
     }
-
-
 }
 
+extension AppDelegate: ScratchPadViewControllerDelegate {
+    func settingsButtonTapped() {
+
+    }
+}

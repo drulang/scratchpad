@@ -8,9 +8,19 @@
 
 import Cocoa
 
+protocol ScratchPadViewControllerDelegate: class {
+    func settingsButtonTapped() 
+}
+
 class ScratchPadViewController: NSViewController {
-    @IBOutlet var textView: NSTextView!
-    
+    @IBOutlet private var textView: NSTextView!
+
+    weak var delegate: ScratchPadViewControllerDelegate?
+
+    @IBAction func settingsButtonTapped(_ sender: Any) {
+        delegate?.settingsButtonTapped()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.font = NSFont(name: "helvetica", size: 17)
