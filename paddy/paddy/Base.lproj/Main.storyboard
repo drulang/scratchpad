@@ -689,7 +689,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="315"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uG1-W1-NC6">
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uG1-W1-NC6">
                                 <rect key="frame" x="15" y="15" width="450" height="285"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="THb-wV-8KO">
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="285"/>
@@ -708,8 +708,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="285" id="aaW-E7-GFR"/>
                                 </constraints>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="b3p-Vz-MKf">
-                                    <rect key="frame" x="434" y="0.0" width="16" height="285"/>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="b3p-Vz-MKf">
+                                    <rect key="frame" x="-100" y="-100" width="16" height="285"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
