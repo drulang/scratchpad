@@ -36,7 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                        action: #selector(largeFont), keyEquivalent: "l"))
         contextMenu.addItem(NSMenuItem.separator())
         contextMenu.addItem(NSMenuItem(title: "Feedback",
-                                       action: #selector(NSApplication.terminate(_:)), keyEquivalent: ""))
+                                       action: #selector(feedbackButtonTapped), keyEquivalent: ""))
         contextMenu.addItem(NSMenuItem.separator())
         contextMenu.addItem(NSMenuItem(title: "Quit Quotes", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
 
@@ -95,6 +95,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc func largeFont() {
         scratchPadViewController.setFont(size: .large)
+    }
+
+    @objc func feedbackButtonTapped() {
+        closePopover(sender: nil)
+        let vc = AboutViewController.freshController()
+        scratchPadViewController.presentAsModalWindow(vc)
     }
 }
 

@@ -13,6 +13,7 @@
 		71D850FD217267DA002B8CB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71D850FB217267DA002B8CB2 /* Main.storyboard */; };
 		71D8510621726B75002B8CB2 /* ScratchPadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D8510521726B75002B8CB2 /* ScratchPadViewController.swift */; };
 		71D8510921726EBC002B8CB2 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D8510721726EBC002B8CB2 /* EventMonitor.swift */; };
+		7F44B1BF21750C2600AFE653 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F44B1BD21750C2600AFE653 /* AboutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		71D850FF217267DA002B8CB2 /* paddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = paddy.entitlements; sourceTree = "<group>"; };
 		71D8510521726B75002B8CB2 /* ScratchPadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScratchPadViewController.swift; sourceTree = "<group>"; };
 		71D8510721726EBC002B8CB2 /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
+		7F44B1BD21750C2600AFE653 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				71D850FE217267DA002B8CB2 /* Info.plist */,
 				71D850FF217267DA002B8CB2 /* paddy.entitlements */,
 				71D8510721726EBC002B8CB2 /* EventMonitor.swift */,
+				7F44B1BD21750C2600AFE653 /* AboutViewController.swift */,
 			);
 			path = paddy;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 				71D850F8217267D6002B8CB2 /* ViewController.swift in Sources */,
 				71D850F6217267D6002B8CB2 /* AppDelegate.swift in Sources */,
 				71D8510621726B75002B8CB2 /* ScratchPadViewController.swift in Sources */,
+				7F44B1BF21750C2600AFE653 /* AboutViewController.swift in Sources */,
 				71D8510921726EBC002B8CB2 /* EventMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
