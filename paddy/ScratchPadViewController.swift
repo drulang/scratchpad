@@ -96,6 +96,12 @@ class ScratchPadViewController: NSViewController {
             increaseFontSize()
         case [.command] where event.characters == "-":
             decreaseFontSize()
+        case [.command] where event.characters == "s":
+            setFont(size: .small)
+        case [.command] where event.characters == "m":
+            setFont(size: .medium)
+        case [.command] where event.characters == "l":
+            setFont(size: .large)
         default:
             break
         }
