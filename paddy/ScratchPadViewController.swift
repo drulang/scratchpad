@@ -58,6 +58,12 @@ class ScratchPadViewController: NSViewController {
         saveFontSize(size)
     }
 
+    @objc func insertHorizontalRule() {
+        let currentData = textView.string
+
+        textView.string = currentData + "\n————————————————————————————\n"
+        textView.scrollToEndOfDocument(nil)
+    }
     private func saveFontSize(_ size: FontSize) {
         UserDefaults.standard.set(size.rawValue, forKey: "padFontSize")
         UserDefaults.standard.synchronize()

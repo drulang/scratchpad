@@ -17,28 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let scratchPadViewController = ScratchPadViewController.freshController()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-//        contextMenu.addItem(NSMenuItem(title: "Window",
-//                                       action: nil, keyEquivalent: ""))
-//        contextMenu.addItem(NSMenuItem(title: "Small",
-//                                       action: #selector(smallFont), keyEquivalent: "s"))
-//        contextMenu.addItem(NSMenuItem(title: "Medium",
-//                                       action: #selector(medFont), keyEquivalent: "m"))
-//        contextMenu.addItem(NSMenuItem(title: "Large",
-//                                       action: #selector(largeFont), keyEquivalent: "l"))
-//        contextMenu.addItem(NSMenuItem.separator())
-        contextMenu.addItem(NSMenuItem(title: "Font",
-                                       action: nil, keyEquivalent: ""))
-        contextMenu.addItem(NSMenuItem(title: "Small",
-                                       action: #selector(smallFont), keyEquivalent: "s"))
-        contextMenu.addItem(NSMenuItem(title: "Medium",
-                                       action: #selector(medFont), keyEquivalent: "m"))
-        contextMenu.addItem(NSMenuItem(title: "Large",
-                                       action: #selector(largeFont), keyEquivalent: "l"))
-        contextMenu.addItem(NSMenuItem.separator())
-        contextMenu.addItem(NSMenuItem(title: "Feedback",
-                                       action: #selector(feedbackButtonTapped), keyEquivalent: ""))
-        contextMenu.addItem(NSMenuItem.separator())
-        contextMenu.addItem(NSMenuItem(title: "Quit Quotes", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+        constructMenu()
 
         if let button = statusItem.button {
             button.image = NSImage(named:NSImage.Name("StatusBarButtonImage"))
@@ -101,6 +80,40 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         closePopover(sender: nil)
         let vc = AboutViewController.freshController()
         scratchPadViewController.presentAsModalWindow(vc)
+    }
+
+    @objc func insertHR() {
+        scratchPadViewController.insertHorizontalRule()
+    }
+
+    private func constructMenu() {
+        //        contextMenu.addItem(NSMenuItem(title: "Window",
+        //                                       action: nil, keyEquivalent: ""))
+        //        contextMenu.addItem(NSMenuItem(title: "Small",
+        //                                       action: #selector(smallFont), keyEquivalent: "s"))
+        //        contextMenu.addItem(NSMenuItem(title: "Medium",
+        //                                       action: #selector(medFont), keyEquivalent: "m"))
+        //        contextMenu.addItem(NSMenuItem(title: "Large",
+        //                                       action: #selector(largeFont), keyEquivalent: "l"))
+        //        contextMenu.addItem(NSMenuItem.separator())
+        contextMenu.addItem(NSMenuItem(title: "---------",
+                                       action: nil, keyEquivalent: ""))
+        contextMenu.addItem(NSMenuItem(title: "Insert HR",
+                                       action: #selector(insertHR), keyEquivalent: "h"))
+
+        contextMenu.addItem(NSMenuItem(title: "---------",
+                                       action: nil, keyEquivalent: ""))
+        contextMenu.addItem(NSMenuItem(title: "Small",
+                                       action: #selector(smallFont), keyEquivalent: "s"))
+        contextMenu.addItem(NSMenuItem(title: "Medium",
+                                       action: #selector(medFont), keyEquivalent: "m"))
+        contextMenu.addItem(NSMenuItem(title: "Large",
+                                       action: #selector(largeFont), keyEquivalent: "l"))
+        contextMenu.addItem(NSMenuItem.separator())
+        contextMenu.addItem(NSMenuItem(title: "Feedback",
+                                       action: #selector(feedbackButtonTapped), keyEquivalent: ""))
+        contextMenu.addItem(NSMenuItem.separator())
+        contextMenu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
     }
 }
 
