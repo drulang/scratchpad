@@ -76,6 +76,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         scratchPadViewController.setFont(size: .large)
     }
 
+    @objc func increaseFont() {
+        scratchPadViewController.increaseFontSize()
+    }
+
+    @objc func decreaseFont() {
+        scratchPadViewController.decreaseFontSize()
+    }
+
     @objc func feedbackButtonTapped() {
         closePopover(sender: nil)
         let vc = AboutViewController.freshController()
@@ -101,6 +109,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         contextMenu.addItem(NSMenuItem(title: "---------",
                                        action: nil, keyEquivalent: ""))
+        contextMenu.addItem(NSMenuItem(title: "Increase",
+                                       action: #selector(increaseFont), keyEquivalent: "+"))
+        contextMenu.addItem(NSMenuItem(title: "Decrease",
+                                       action: #selector(decreaseFont), keyEquivalent: "-"))
         contextMenu.addItem(NSMenuItem(title: "Small",
                                        action: #selector(smallFont), keyEquivalent: "s"))
         contextMenu.addItem(NSMenuItem(title: "Medium",

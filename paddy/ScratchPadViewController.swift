@@ -92,9 +92,9 @@ class ScratchPadViewController: NSViewController {
         case [.command] where event.characters == "h",
              [.command, .shift] where event.characters == "h":
             insertHorizontalRule()
-        case [.command, .shift] where event.characters == "=":
+        case [.command] where event.characters == "=":
             increaseFontSize()
-        case [.command, .shift] where event.characters == "-":
+        case [.command] where event.characters == "-":
             decreaseFontSize()
         default:
             break
