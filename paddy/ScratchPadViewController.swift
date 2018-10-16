@@ -19,8 +19,11 @@ class ScratchPadViewController: NSViewController {
         case large = 21
     }
 
-    @IBOutlet private var textView: NSTextView!
+    private var fontSize: Int {
+        return UserDefaults.standard.value(forKey: "padFontSize") as? Int ?? FontSize.medium.rawValue
+    }
 
+    @IBOutlet private var textView: NSTextView!
     weak var delegate: ScratchPadViewControllerDelegate?
 
     @IBAction private func settingsButtonTapped(_ sender: Any) {
@@ -33,12 +36,7 @@ class ScratchPadViewController: NSViewController {
         textView.font = NSFont(name: "helvetica", size: 17)
         textView.string = UserDefaults.standard.value(forKey: "padData") as? String ?? ""
 
-        if let fontSizeRaw = UserDefaults.standard.value(forKey: "padFontSize") as? Int,
-            let fontSize = FontSize(rawValue: fontSizeRaw) {
-            setFont(size: fontSize)
-        } else {
-            setFont(size: .medium)
-        }
+        setFont(size: fontSize)
 
         NotificationCenter.default.addObserver(forName: NSApplication.willTerminateNotification,
                                                object: nil, queue: nil) { [weak self] (_) in
@@ -66,24 +64,38 @@ class ScratchPadViewController: NSViewController {
     }
 
     func setFont(size: FontSize) {
-        textView.font = NSFont(name: "helvetica", size: CGFloat(size.rawValue))
+        setFont(size: size.rawValue)
+    }
+
+    func setFont(size: Int) {
+        textView.font = NSFont(name: "helvetica", size: CGFloat(size))
         saveFontSize(size)
     }
 
     @objc func insertHorizontalRule() {
         textView.insertText("\n———————————————————————\n")
     }
-    private func saveFontSize(_ size: FontSize) {
-        UserDefaults.standard.set(size.rawValue, forKey: "padFontSize")
+    private func saveFontSize(_ size: Int) {
+        UserDefaults.standard.set(size, forKey: "padFontSize")
         UserDefaults.standard.synchronize()
     }
-    
+
+    @objc func increaseFontSize() {
+        setFont(size: fontSize + 1)
+    }
+    @objc func decreaseFontSize() {
+        setFont(size: fontSize - 1)
+    }
 
     override func keyDown(with event: NSEvent) {
         switch event.modifierFlags.intersection(.deviceIndependentFlagsMask) {
         case [.command] where event.characters == "h",
              [.command, .shift] where event.characters == "h":
             insertHorizontalRule()
+        case [.command, .shift] where event.characters == "=":
+            increaseFontSize()
+        case [.command, .shift] where event.characters == "-":
+            decreaseFontSize()
         default:
             break
         }
