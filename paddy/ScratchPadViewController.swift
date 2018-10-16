@@ -29,6 +29,7 @@ class ScratchPadViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
         textView.font = NSFont(name: "helvetica", size: 17)
         textView.string = UserDefaults.standard.value(forKey: "padData") as? String ?? ""
 
@@ -53,6 +54,17 @@ class ScratchPadViewController: NSViewController {
         textView.window?.makeFirstResponder(textView)
     }
 
+    private func setup() {
+        NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) {
+            self.flagsChanged(with: $0)
+            return $0
+        }
+        NSEvent.addLocalMonitorForEvents(matching: .keyDown) {
+            self.keyDown(with: $0)
+            return $0
+        }
+    }
+
     func setFont(size: FontSize) {
         textView.font = NSFont(name: "helvetica", size: CGFloat(size.rawValue))
         saveFontSize(size)
@@ -62,11 +74,21 @@ class ScratchPadViewController: NSViewController {
         let currentData = textView.string
 
         textView.string = currentData + "\n————————————————————————————\n"
-        textView.scrollToEndOfDocument(nil)
     }
     private func saveFontSize(_ size: FontSize) {
         UserDefaults.standard.set(size.rawValue, forKey: "padFontSize")
         UserDefaults.standard.synchronize()
+    }
+    
+
+    override func keyDown(with event: NSEvent) {
+        switch event.modifierFlags.intersection(.deviceIndependentFlagsMask) {
+        case [.command] where event.characters == "h",
+             [.command, .shift] where event.characters == "h":
+            insertHorizontalRule()
+        default:
+            break
+        }
     }
 }
 
