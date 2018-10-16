@@ -96,8 +96,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //        contextMenu.addItem(NSMenuItem(title: "Large",
         //                                       action: #selector(largeFont), keyEquivalent: "l"))
         //        contextMenu.addItem(NSMenuItem.separator())
-        contextMenu.addItem(NSMenuItem(title: "---------",
-                                       action: nil, keyEquivalent: ""))
         contextMenu.addItem(NSMenuItem(title: "Insert HR",
                                        action: #selector(insertHR), keyEquivalent: "h"))
 
