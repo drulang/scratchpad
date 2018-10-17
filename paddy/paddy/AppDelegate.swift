@@ -133,4 +133,8 @@ extension AppDelegate: ScratchPadViewControllerDelegate {
         statusItem.popUpMenu(contextMenu)
         statusItem.menu = nil
     }
+
+    func close() {
+        closePopover(sender: nil)
+    }
 }

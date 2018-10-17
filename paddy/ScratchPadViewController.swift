@@ -10,6 +10,7 @@ import Cocoa
 
 protocol ScratchPadViewControllerDelegate: class {
     func settingsButtonTapped()
+    func close()
 }
 
 class ScratchPadViewController: NSViewController {
@@ -104,6 +105,10 @@ class ScratchPadViewController: NSViewController {
             setFont(size: .large)
         default:
             break
+        }
+
+        if event.characters == "\u{1B}" {
+            delegate?.close()
         }
     }
 }
