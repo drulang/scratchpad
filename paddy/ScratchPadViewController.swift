@@ -34,6 +34,7 @@ class ScratchPadViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        textView.textContainerInset = NSSize(width: 4, height: 6)
         textView.font = NSFont(name: "helvetica", size: 17)
         textView.string = UserDefaults.standard.value(forKey: "padData") as? String ?? ""
 
