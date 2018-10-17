@@ -20,6 +20,15 @@ class ScratchPadViewController: NSViewController {
         case large = 21
     }
 
+    var currentFont: NSFont? {
+        get {
+            return textView.font
+        }
+        set {
+            textView.font = newValue
+        }
+    }
+
     private var fontSize: Int {
         return UserDefaults.standard.value(forKey: "padFontSize") as? Int ?? FontSize.medium.rawValue
     }
@@ -52,7 +61,9 @@ class ScratchPadViewController: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         textView.window?.makeFirstResponder(textView)
+
     }
+
 
     private func setup() {
         NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) {

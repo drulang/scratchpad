@@ -82,6 +82,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc func decreaseFont() {
         scratchPadViewController.decreaseFontSize()
+        NSFontManager.shared.orderFrontFontPanel(self)
+        NSFontManager.shared.target = self
+    }
+
+    @objc func changeFont(_ sender: NSFontManager?)  {
+        guard let currentFont = scratchPadViewController.currentFont else { return }
+        let newFont = sender?.convert(currentFont)
+        scratchPadViewController.currentFont = newFont
+        print("Changin \(newFont)")
     }
 
     @objc func feedbackButtonTapped() {
@@ -95,15 +104,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func constructMenu() {
-        //        contextMenu.addItem(NSMenuItem(title: "Window",
-        //                                       action: nil, keyEquivalent: ""))
-        //        contextMenu.addItem(NSMenuItem(title: "Small",
-        //                                       action: #selector(smallFont), keyEquivalent: "s"))
-        //        contextMenu.addItem(NSMenuItem(title: "Medium",
-        //                                       action: #selector(medFont), keyEquivalent: "m"))
-        //        contextMenu.addItem(NSMenuItem(title: "Large",
-        //                                       action: #selector(largeFont), keyEquivalent: "l"))
-        //        contextMenu.addItem(NSMenuItem.separator())
+
         contextMenu.addItem(NSMenuItem(title: "Insert HR",
                                        action: #selector(insertHR), keyEquivalent: "h"))
 
@@ -137,4 +138,8 @@ extension AppDelegate: ScratchPadViewControllerDelegate {
     func close() {
         closePopover(sender: nil)
     }
+}
+
+extension AppDelegate {
+
 }
