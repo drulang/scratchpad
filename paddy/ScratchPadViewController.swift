@@ -14,6 +14,7 @@ protocol ScratchPadViewControllerDelegate: class {
 }
 
 class ScratchPadViewController: NSViewController {
+    let standardFont: NSFont = NSFont(name: "helvetica", size: 17)!
     enum FontSize: Int {
         case small = 15
         case medium = 18
@@ -26,6 +27,7 @@ class ScratchPadViewController: NSViewController {
         }
         set {
             textView.font = newValue
+            saveFont(newValue ?? standardFont)
         }
     }
 
@@ -44,10 +46,15 @@ class ScratchPadViewController: NSViewController {
         super.viewDidLoad()
         setup()
         textView.textContainerInset = NSSize(width: 4, height: 6)
-        textView.font = NSFont(name: "helvetica", size: 17)
-        textView.string = UserDefaults.standard.value(forKey: "padData") as? String ?? ""
 
-        setFont(size: fontSize)
+        if let savedFontName = UserDefaults.standard.value(forKey: "padFontName") as? String {
+            let font = NSFont(name: savedFontName, size: CGFloat(fontSize))
+            textView.font = font
+        } else {
+           textView.font = NSFont(name: "helvetica", size: CGFloat(fontSize))
+        }
+
+        textView.string = UserDefaults.standard.value(forKey: "padData") as? String ?? ""
 
         NotificationCenter.default.addObserver(forName: NSApplication.willTerminateNotification,
                                                object: nil, queue: nil) { [weak self] (_) in
@@ -81,7 +88,7 @@ class ScratchPadViewController: NSViewController {
     }
 
     func setFont(size: Int) {
-        textView.font = NSFont(name: "helvetica", size: CGFloat(size))
+        textView.font = NSFont(name: currentFont?.fontName ?? "helvetica", size: CGFloat(size))
         saveFontSize(size)
     }
 
@@ -90,6 +97,15 @@ class ScratchPadViewController: NSViewController {
     }
     private func saveFontSize(_ size: Int) {
         UserDefaults.standard.set(size, forKey: "padFontSize")
+        UserDefaults.standard.synchronize()
+    }
+
+    private func saveFont(_ font: NSFont){
+        let size = Int(font.pointSize)
+        let name = font.displayName
+
+        saveFontSize(size)
+        UserDefaults.standard.set(name, forKey: "padFontName")
         UserDefaults.standard.synchronize()
     }
 

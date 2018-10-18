@@ -90,7 +90,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let currentFont = scratchPadViewController.currentFont else { return }
         let newFont = sender?.convert(currentFont)
         scratchPadViewController.currentFont = newFont
-        print("Changin \(newFont)")
     }
 
     @objc func feedbackButtonTapped() {
