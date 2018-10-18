@@ -64,24 +64,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         eventMonitor?.stop()
     }
 
-    @objc func smallFont() {
-        scratchPadViewController.setFont(size: .small)
-    }
-
-    @objc func medFont() {
-        scratchPadViewController.setFont(size: .medium)
-    }
-
-    @objc func largeFont() {
-        scratchPadViewController.setFont(size: .large)
-    }
-
     @objc func increaseFont() {
         scratchPadViewController.increaseFontSize()
     }
 
     @objc func decreaseFont() {
         scratchPadViewController.decreaseFontSize()
+    }
+
+    @objc func showFontSelector() {
         NSFontManager.shared.orderFrontFontPanel(self)
         NSFontManager.shared.target = self
     }
@@ -109,16 +100,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         contextMenu.addItem(NSMenuItem(title: "---------",
                                        action: nil, keyEquivalent: ""))
+        contextMenu.addItem(NSMenuItem(title: "Change Font",
+                                       action: #selector(showFontSelector), keyEquivalent: ""))
         contextMenu.addItem(NSMenuItem(title: "Increase",
                                        action: #selector(increaseFont), keyEquivalent: "+"))
         contextMenu.addItem(NSMenuItem(title: "Decrease",
                                        action: #selector(decreaseFont), keyEquivalent: "-"))
-        contextMenu.addItem(NSMenuItem(title: "Small",
-                                       action: #selector(smallFont), keyEquivalent: "s"))
-        contextMenu.addItem(NSMenuItem(title: "Medium",
-                                       action: #selector(medFont), keyEquivalent: "m"))
-        contextMenu.addItem(NSMenuItem(title: "Large",
-                                       action: #selector(largeFont), keyEquivalent: "l"))
         contextMenu.addItem(NSMenuItem.separator())
         contextMenu.addItem(NSMenuItem(title: "Feedback",
                                        action: #selector(feedbackButtonTapped), keyEquivalent: ""))
